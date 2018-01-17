@@ -50,7 +50,7 @@ Cube::Cube(MyVector center, float length) {
 
 void Cube::drawCube()
 {
-
+	// Todo: ‚±‚±‚ÌƒGƒ‰[‚ğ’¼‚·
 	for (int i = 0; i < 8; i++)
 		printf("%f,%f,%f\n", ver[i].getX(), ver[i].getY(), ver[i].getZ());
 
