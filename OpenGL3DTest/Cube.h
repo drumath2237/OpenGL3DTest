@@ -14,9 +14,11 @@ public:
 
 	void drawCube();
 
+	MyVector ver[8]; //８つの頂点
+
+
 private:
 	MyVector center; //中心点の座標
-	MyVector ver[8]; //８つの頂点
 };
 
 
@@ -51,6 +53,7 @@ Cube::Cube(MyVector center, float length) {
 void Cube::drawCube()
 {
 	// Todo: ここのエラーを直す
+	//　Done: 直ったw　なんで直ったか原因究明すべし。
 	for (int i = 0; i < 8; i++)
 		printf("%f,%f,%f\n", ver[i].getX(), ver[i].getY(), ver[i].getZ());
 
@@ -61,38 +64,51 @@ void Cube::drawCube()
 		vertexes[i * 3 + 2] = ver[i].getZ();
 	}
 
+	float color[] = {
+		1,1,1,
+		1,1,1,
+		1,1,1,
+		1,1,1,
+		1,1,1,
+		1,1,1,
+		1,1,1,
+		1,1,1
+	};
+
 	//for(int i=0;i<24;i++)
 	//	printf_s("%f\n",vertexes[i]);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3, GL_FLOAT, 0, vertexes);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glColorPointer(3, GL_FLOAT, 0, color);
 
-	//glBegin(GL_LINE_STRIP);
-	//{
-	//	for (int i = 0; i < 4; i++) {
-	//		glArrayElement(i);
-	//	}
-	//	glArrayElement(0);
-	//}
-	//glEnd();
+	glBegin(GL_LINE_STRIP);
+	{
+		for (int i = 0; i < 4; i++) {
+			glArrayElement(i);
+		}
+		glArrayElement(0);
+	}
+	glEnd();
 
-	//glBegin(GL_LINES);
-	//{
-	//	for (int i = 0; i < 4; i++) {
-	//		glArrayElement(i);
-	//		glArrayElement(i + 4);
-	//	}
-	//}
-	//glEnd();
+	glBegin(GL_LINES);
+	{
+		for (int i = 0; i < 4; i++) {
+			glArrayElement(i);
+			glArrayElement(i + 4);
+		}
+	}
+	glEnd();
 
-	//glBegin(GL_LINE_STRIP);
-	//{
-	//	for (int i = 4; i < 8; i++) {
-	//		glArrayElement(i);
-	//	}
-	//	glArrayElement(4);
-	//}
-	//glEnd();
+	glBegin(GL_LINE_STRIP);
+	{
+		for (int i = 4; i < 8; i++) {
+			glArrayElement(i);
+		}
+		glArrayElement(4);
+	}
+	glEnd();
 
 	glPointSize(5);
 	glBegin(GL_POINTS);
